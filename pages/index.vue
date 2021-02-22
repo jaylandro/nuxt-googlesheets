@@ -22,7 +22,7 @@ export default {
     };
   },
   async fetch() {
-    this.users = await fetch("http://localhost:3000/api/sheets")
+    this.users = await fetch("https://nuxtjs-rho-nine.vercel.app/api/sheets")
       .then((res) => res.json())
       .then((data) => data.body);
   },
