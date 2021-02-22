@@ -1,41 +1,32 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxtjs
-      </h1>
-      <h2 class="subtitle">
-        My astonishing Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <h1>userland</h1>
+    <ul id="example-1">
+      <li v-for="user in users" :key="user.Twitter">
+        {{ user.Name }}, {{ user.Twitter }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from "~/components/Logo.vue";
 
 export default {
   components: {
-    Logo
-  }
-}
+    Logo,
+  },
+  data() {
+    return {
+      users: [],
+    };
+  },
+  async fetch() {
+    this.users = await fetch("http://localhost:3000/api/sheets")
+      .then((res) => res.json())
+      .then((data) => data.body);
+  },
+};
 </script>
 
 <style>
@@ -49,8 +40,8 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
