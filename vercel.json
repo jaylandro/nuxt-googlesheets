@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js",
+      "src": "/api/sheets",
+      "dest": "/api/sheets.js",
       "methods": ["GET", "OPTIONS"],
       "headers": {
         "Access-Control-Allow-Methods": "GET",
